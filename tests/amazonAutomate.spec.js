@@ -1,7 +1,9 @@
-import {test} from "@playwright/test";
+import {expect, test} from "@playwright/test";
 
-test("dynamicXpath test",async({browser})=>{
+test("automate amazon test",async({browser})=>{
+  //const browser = await chromium.launch({headless:false});
     const context = await browser.newContext();
+    //const context2 = await browser.newContext();
     const page = await context.newPage();
 
     await page.goto("https://www.amazon.in/");
@@ -21,13 +23,34 @@ test("dynamicXpath test",async({browser})=>{
     await addToCartBtn.click();
 
     await newPage.waitForLoadState('domcontentloaded');
-    await newPage.screenshot({path:"screenshot1/amazonAddToCart.png"})
-    //await page.waitForTimeout(3000);
+    // await newPage.screenshot({path:"screenshot1/amazonAddToCart.png"})
 
-    await page.bringToFront();
+    // context2 = await Promise.all([
+    //     newPage.waitForEvent('page'),
+    //     newPage.locator("//a[text()='Details']").click()
+    // ])
 
-    await newPage.close();
+  //   const [detailsContext] = await Promise.all([
+  //   browser.waitForEvent("context"), // waits for a NEW window context
+  //   newPage.locator("//a[text()='Details']").click(),
+  // ]);
 
-    await page.waitForTimeout(3000);
+  // const detailsPage = await detailsContext.waitForEvent("page");
+  // await detailsPage.waitForLoadState('domcontentloaded');
+    
+  // await detailsPage.locator("//a[@class='a-button a-button-primary same_window']").click();
+  // await detailsPage.waitForLoadState('domcontentloaded');
+    const proceedToBuy = await newPage.locator("//input[@name='proceedToRetailCheckout']");
+    const textContentInButton = await proceedToBuy.inputValue();
+
+    console.log(textContentInButton);
+
+    expect(textContentInButton==="Proceed to checkout");
+    
+    // await page.bringToFront();
+
+    // await newPage.close();
+
+    // await page.waitForTimeout(3000);
 
 });
