@@ -1,4 +1,0 @@
-Simple alert I am an alert box!
-Confirm alert Press a Button !
-Prompt Message Please enter your name
-Popup Default Value Automation Testing user

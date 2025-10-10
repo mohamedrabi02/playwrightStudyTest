@@ -1,8 +1,0 @@
-{
-  'data-addnewaddress': 'add-new',
-  id: 'unifiedLocation1ClickAddress',
-  name: 'dropdown-selection',
-  type: 'hidden',
-  value: 'add-new',
-  class: 'nav-progressive-attribute'
-}
